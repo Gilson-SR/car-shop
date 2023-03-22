@@ -12,6 +12,16 @@ class CarController {
       next(error);
     }
   }
+
+  async get(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const { status, message } = await this.service.get(id);
+      res.status(status).json(message);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default CarController;
