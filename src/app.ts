@@ -1,7 +1,14 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
+import router from './Routes/index';
 
 const app = express();
 
-export default app;
+app.use(express.json());
 
-// Inicializando projeto
+app.use(router);
+
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  res.status(500).json(err.message);
+});
+
+export default app;
