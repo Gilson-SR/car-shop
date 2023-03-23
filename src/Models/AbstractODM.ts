@@ -1,7 +1,7 @@
 import { Model, models, Schema, model } from 'mongoose';
 
 abstract class AbstractODM<T> {
-  private model: Model<T>;
+  protected model: Model<T>;
 
   constructor(private schema: Schema, modelName: string) {
     this.schema = schema;
@@ -10,6 +10,15 @@ abstract class AbstractODM<T> {
 
   async get() {
     return this.model.find();
+  }
+
+  async getById(id: string) {
+    try {
+      const body = await this.model.findById(id);
+      return body;
+    } catch (e) {
+      return null;
+    }
   }
 
   async getBy(filter: Partial<T>) {
