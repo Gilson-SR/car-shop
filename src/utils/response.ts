@@ -1,4 +1,4 @@
-const res = (status: number, message: unknown) => ({ status, message });
-const resError = (status: number, message: unknown) => ({ status, message });
+const res = (s: number, m: unknown) => ({ status: s, message: m });
+const resError = (s: number, m: unknown) => ({ status: s, message: { message: m } });
 
 export { res, resError };
