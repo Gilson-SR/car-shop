@@ -77,5 +77,23 @@ describe('Testa a Service', function () {
     expect(result.message).to.deep.equal({ message: 'Invalid mongo id' });
   });
 
+  it('testa atualização de carros', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(cars[0]);
+
+    const service = new CarService();
+    const result = await service.update('641b49b1a135746a3c3b2909', car);
+
+    expect(result.message).to.deep.equal(cars[0]);
+  });
+
+  it('testa id inválido na atualização de carros)', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(cars[0]);
+
+    const service = new CarService();
+    const result = await service.update('1', car);
+
+    expect(result.message).to.deep.equal({ message: 'Invalid mongo id' });
+  });
+
   afterEach(sinon.restore);
 });

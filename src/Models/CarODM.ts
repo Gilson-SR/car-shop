@@ -34,6 +34,17 @@ class CarODM {
       return null;
     }
   }
+
+  async update(id: string, car: Partial<ICar>) {
+    try {
+      const updateCar = await this.model.findByIdAndUpdate(id, car, {
+        new: true,
+      });
+      return updateCar;
+    } catch (error) {
+      return null;
+    }
+  }
 }
 
 export default CarODM;

@@ -12,4 +12,6 @@ carRouter.get('/cars', control.get.bind(control));
 
 carRouter.get('/cars/:id', control.get.bind(control));
 
+carRouter.put('/cars/:id', control.update.bind(control));
+
 export default carRouter;
