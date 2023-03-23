@@ -12,4 +12,6 @@ motorcycleRouter.get('/motorcycles', control.get.bind(control));
 
 motorcycleRouter.get('/motorcycles/:id', control.get.bind(control));
 
+motorcycleRouter.put('/motorcycles/:id', control.update.bind(control));
+
 export default motorcycleRouter;

@@ -29,6 +29,13 @@ class MotorcycleService {
     const motorcyclesDomain = motorcycles.map((e) => MotorcycleService.createDomain(e));
     return res(200, motorcyclesDomain);
   }
+
+  async update(id: string, motorcycle: Partial<IMotorcycle>) {
+    if (!isValidObjectId(id)) return resError(422, 'Invalid mongo id');
+    const updateMotorcycle = await this.model.update(id, motorcycle);
+    if (!updateMotorcycle) return resError(404, 'Motorcycle not found');
+    return res(200, MotorcycleService.createDomain(updateMotorcycle));
+  }
 }
 
 export default MotorcycleService;
